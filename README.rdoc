@@ -1,0 +1,37 @@
+= ValidatesAsEuVatNumber Plugin
+
+This plugin adds a new validates_as_eu_vat_number class method toActiveRecord::Base
+
+The validator checks the attribute(s) given to see if they are valid EU VAT numbers. The :with modifier is either a field containing a country code, or the country code itself.
+
+
+== Installation
+  git submodule add git://github.com/mendable/validates_as_eu_vat_number.git vendor/plugins/validates_as_eu_vat_number
+  git commit -am "add validates_as_eu_vat_number plugin"
+
+Ensure that you have this in your config/deploy.rb:
+  set :git_enable_submodules, true
+so that the submodules are pulled down when you deploy your application.
+
+
+= Examples
+  class VatNumber < ActiveRecord::Base
+    validates_as_eu_vat_number :full_vat_number
+    validates_as_eu_vat_number :vat_number, :with => :country_code
+    validates_as_eu_vat_number :full_vat_number, :unless => Proc.new {|user| user.full_vat_number.blank? }
+    validates_as_eu_vat_number :vat_number, :with => Proc.new{ |user| user.country.vat_prefix.to_s }
+  end
+
+
+= Credits
+The original version of this plugin came from http://www.3spoken.co.uk/2008/03/validates-as-eu-vat-number-rails-plugin.html but was not on Github, and looked like it had not been updated for a while (eg, was raising depreciation warnings). 
+
+The version original is:
+Copyright (c) 2008 Neil Wilson, Aldur Systems
+released under the MIT license
+
+I have imported this to Github and fixed the depreciation warnings, and will maintain my own fork here.
+* Name: Jason Lambert
+* Homepage: http://www.mendable.com
+* GitHub: http://www.github.com/mendable
+
