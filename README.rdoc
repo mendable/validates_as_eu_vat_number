@@ -1,8 +1,8 @@
 = ValidatesAsEuVatNumber Plugin
 
-This plugin adds a new validates_as_eu_vat_number class method toActiveRecord::Base
+This plugin adds a new validates_as_eu_vat_number class method to ActiveRecord::Base
 
-The validator checks the attribute(s) given to see if they are valid EU VAT numbers. The :with modifier is either a field containing a country code, or the country code itself.
+The validator checks the attribute(s) given to see if they are in the format of valid EU VAT numbers. The :with modifier is either a field containing a country code, or the country code itself.
 
 
 == Installation
