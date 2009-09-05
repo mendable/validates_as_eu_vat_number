@@ -67,7 +67,7 @@ module ActiveRecord
       #   not occur (e.g. :unless => :skip_validation, or :unless => Proc.new { |user| user.signup_step <= 2 }).  The
       #   method, proc or string should return or evaluate to a true or false value.
       def validates_as_eu_vat_number(*attr_names)
-        configuration = { :message => ActiveRecord::Errors.default_error_messages[:invalid], :on => :save, :with => nil }
+        configuration = { :message => I18n.t('activerecord.errors.messages.invalid'), :on => :save, :with => nil }
         configuration.update(attr_names.extract_options!)
 
         validates_each(attr_names, configuration) do |record, attr_name, value|
