@@ -18,7 +18,7 @@ so that the submodules are pulled down when you deploy your application.
   class VatNumber < ActiveRecord::Base
     validates_as_eu_vat_number :full_vat_number
     validates_as_eu_vat_number :vat_number, :with => :country_code
-    validates_as_eu_vat_number :full_vat_number, :unless => Proc.new {|user| user.full_vat_number.blank? }
+    validates_as_eu_vat_number :full_vat_number, :allow_blank => true
     validates_as_eu_vat_number :vat_number, :with => Proc.new{ |user| user.country.vat_prefix.to_s }
   end
 
